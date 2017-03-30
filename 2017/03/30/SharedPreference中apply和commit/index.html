@@ -15,16 +15,19 @@
 
 
 
-<meta name="description" content="博客内以后分享一些技术、生活的文章，希望同志们多多关注">
+<meta name="description" content="SharedPreference基础问题分享">
 <meta property="og:type" content="article">
-<meta property="og:title" content="邢皓翔个人博客成立了">
-<meta property="og:url" content="http://xinghx.com/2017/02/10/hello-world/index.html">
+<meta property="og:title" content="SharedPreference中apply和commit">
+<meta property="og:url" content="http://xinghx.com/2017/03/30/SharedPreference中apply和commit/index.html">
 <meta property="og:site_name" content="邢皓翔的个人网站与博客">
-<meta property="og:description" content="博客内以后分享一些技术、生活的文章，希望同志们多多关注">
-<meta property="og:updated_time" content="2017-02-10T13:11:43.668Z">
+<meta property="og:description" content="SharedPreference基础问题分享">
+<meta property="og:image" content="http://img.blog.csdn.net/20170330223248288?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnViZXNvbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170330223351082?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnViZXNvbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-03-30T14:48:38.188Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="邢皓翔个人博客成立了">
-<meta name="twitter:description" content="博客内以后分享一些技术、生活的文章，希望同志们多多关注">
+<meta name="twitter:title" content="SharedPreference中apply和commit">
+<meta name="twitter:description" content="SharedPreference基础问题分享">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170330223248288?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnViZXNvbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 <link rel="apple-touch-icon" href= "http://xinghx.com/apple-touch-icon.png">
 
@@ -56,7 +59,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>邢皓翔个人博客成立了 | 邢皓翔的个人网站与博客</title>
+<title>SharedPreference中apply和commit | 邢皓翔的个人网站与博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -258,11 +261,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-SharedPreference中apply和commit" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/02/10/hello-world/" class="article-date">
-      <time datetime="2017-02-10T10:36:21.308Z" itemprop="datePublished">2017-02-10</time>
+      <a href="/2017/03/30/SharedPreference中apply和commit/" class="article-date">
+      <time datetime="2017-03-30T14:30:20.000Z" itemprop="datePublished">2017-03-30</time>
 </a>
 
 
@@ -277,7 +280,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      邢皓翔个人博客成立了
+      SharedPreference中apply和commit
     </h1>
   
 
@@ -285,12 +288,12 @@
       
       <div class="article-info article-info-post">
         
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/记录/">记录</a>
-    </div>
-
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -298,7 +301,21 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>博客内以后分享一些技术、生活的文章，希望同志们多多关注</p>
+        <p>今天用到SharedPreference存储了一些数据，熟悉Android的同学们都知道SharedPreference需要创建一个Editor然后put进去对应的值，然后使用commit来进行保存就搞定了，今天写完之后AndroidStudio发出了一条警告，警告具体内容忘记了，大概意思是使用apply来代替commit，我心想不能你让我用就用吧，所以我就来翻阅了一下谷歌的官方api，果然这两个直接是有不同的，今天就来记录一下。</p>
+<p><img src="http://img.blog.csdn.net/20170330223248288?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnViZXNvbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="apply"></p>
+<p><img src="http://img.blog.csdn.net/20170330223351082?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnViZXNvbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="commit"></p>
+<p>总结：</p>
+<ul>
+<li>apply没有返回值，commit返回布尔类型，如果你需要获取到存储状态那么你就可以用commit，反之用apply</li>
+</ul>
+<ul>
+<li><p>apply是原子性操作，然后异步存储到硬盘中，但commit是同步操作，所以说如果在多个提交操作的时候commit效率不如apply高。</p>
+</li>
+<li><p>在真正开发中如果对数据存储是否成功不需要的话可以使用apply，反之使用commit。</p>
+</li>
+</ul>
+<p>现在在AndroidStudio开发如果put多个值的时候会提示使用apply，所以我们在合适的使用场景下就来使用apply吧。</p>
+<p>想不到合适的结尾，就这样结束吧~~~逃 :)</p>
 
       
     </div>
@@ -310,12 +327,12 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/02/10/Android贝塞尔曲线——曲线初体验/">
-                    Android贝塞尔曲线——曲线初体验
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/03/01/Android中肯定会遇到的问题——内存泄漏/">
+                    Android中肯定会遇到的问题——内存泄漏
                 </a>
             </div>
-        
         
     </nav>
 
@@ -361,7 +378,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"邢皓翔个人博客成立了　| 邢皓翔的个人网站与博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"SharedPreference中apply和commit　| 邢皓翔的个人网站与博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -377,7 +394,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2017/02/10/hello-world/" data-title="邢皓翔个人博客成立了" data-url="http://xinghx.com/2017/02/10/hello-world/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/03/30/SharedPreference中apply和commit/" data-title="SharedPreference中apply和commit" data-url="http://xinghx.com/2017/03/30/SharedPreference中apply和commit/"></div>
     <script>
         var duoshuoQuery = {short_name:"xinghx"};
         var loadComment = function(){
@@ -400,15 +417,15 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/02/10/Android贝塞尔曲线——曲线初体验/" title="上一篇: Android贝塞尔曲线——曲线初体验">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2017/03/01/Android中肯定会遇到的问题——内存泄漏/" title="下一篇: Android中肯定会遇到的问题——内存泄漏">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
 
