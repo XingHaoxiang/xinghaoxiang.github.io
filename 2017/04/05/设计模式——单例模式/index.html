@@ -15,16 +15,16 @@
 
 
 
-<meta name="description" content="邢皓翔技术交流网站，专注android开发，移动端开发。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://xinghx.com/tags/index.html">
+<meta name="description" content="设计模式之单例模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式——单例">
+<meta property="og:url" content="http://xinghx.com/2017/04/05/设计模式——单例模式/index.html">
 <meta property="og:site_name" content="邢皓翔的个人网站与博客">
-<meta property="og:description" content="邢皓翔技术交流网站，专注android开发，移动端开发。">
-<meta property="og:updated_time" content="2017-02-10T12:49:10.002Z">
+<meta property="og:description" content="设计模式之单例模式">
+<meta property="og:updated_time" content="2017-05-23T12:46:13.960Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
-<meta name="twitter:description" content="邢皓翔技术交流网站，专注android开发，移动端开发。">
+<meta name="twitter:title" content="设计模式——单例">
+<meta name="twitter:description" content="设计模式之单例模式">
 
 <link rel="apple-touch-icon" href= "http://xinghx.com/apple-touch-icon.png">
 
@@ -56,7 +56,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>标签 | 邢皓翔的个人网站与博客</title>
+<title>设计模式——单例 | 邢皓翔的个人网站与博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -66,7 +66,7 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -258,11 +258,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-设计模式——单例模式" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/tags/index.html" class="article-date">
-      <time datetime="2017-02-10T10:52:10.000Z" itemprop="datePublished">2017-02-10</time>
+      <a href="/2017/04/05/设计模式——单例模式/" class="article-date">
+      <time datetime="2017-04-05T13:30:20.000Z" itemprop="datePublished">2017-04-05</time>
 </a>
 
 
@@ -277,7 +277,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      标签
+      设计模式——单例
     </h1>
   
 
@@ -287,6 +287,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -294,86 +298,62 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <style>
-    .article-meta { display: none; }
-    #container .article .article-title { padding-right: 0; }
-    .article-header {
-        padding: 0;
-        padding-top: 26px;
-        border-left: none;
-        text-align: center;
-    }
-    .article-header:hover { border-left: none; }
-    .article-title { font-size: 1.6em }
-    .article-entry hr { margin: 0;}
-    .article-meta,
-    #container .article-info-post.article-info { display: none;}
-    #container .article .article-title { padding: 0; }
-</style>
+        <p>单例模式，可能是所有开发人员都了解的一种设计模式，但是又有大部分人对单例模式只是仅仅会用，这个对于求知欲极强的我来说怎么可能， 那么一定要把它搞明白了。</p>
+<p><strong>单例模式定义： 保证一个类中只存在一个对象实例，并提供一个唯一的访问点</strong></p>
+<p>单例模式说来就话长了，因为他有好多种写法，下面我要一一列举出来。 Come On！</p>
+<h4 id="1-饿汉模式"><a href="#1-饿汉模式" class="headerlink" title="1.饿汉模式"></a>1.饿汉模式</h4><pre><code>public class Singleton {
+    private static Singleton instance = new Singleton();
+    private Singleton(){
 
+    }
 
-    <!-- Tag Cloud Page -->
-    <hr>
-<br>
-<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/记录/">记录</a><span class="category-list-count">1</span></li></ul>
+    public static Singleton getInstance{
+        return instance;
+    }
+}
+</code></pre><p>这种方式叫做饿汉式，这种方式在类加载的时候就完成了初始化操作，所以类加载起来会慢，但是获取对象的速度就会变快。 这种方式避免了多线程的同步操作问题。</p>
+<h4 id="2-懒汉模式（线程不安全）"><a href="#2-懒汉模式（线程不安全）" class="headerlink" title="2.懒汉模式（线程不安全）"></a>2.懒汉模式（线程不安全）</h4><pre><code>public class Singleton {  
+    private static Singleton instance;  
+    private Singleton (){
+    }   
+    public static Singleton getInstance() {  
+        if (instance == null) {  
+          instance = new Singleton();  
+        }  
+        return instance; 
+    }  
+  }
+</code></pre><p>懒汉模式申明了一个静态对象，在用户第一次调用时初始化，虽然节约了资源，但第一次加载时需要实例化，反映稍慢一些，而且在多线程不能正常工作。</p>
+<h4 id="3-懒汉模式（线程安全）"><a href="#3-懒汉模式（线程安全）" class="headerlink" title="3.懒汉模式（线程安全）"></a>3.懒汉模式（线程安全）</h4><pre><code>public class Singleton {  
+    private static Singleton instance;  
+    private Singleton (){
+    }
+    public static synchronized Singleton getInstance() {  
+        if (instance == null) {  
+          instance = new Singleton();  
+        }  
+        return instance;  
+    }  
+ }
+</code></pre><p>这种写法能够在多线程中很好的工作，但是每次调用getInstance方法时都需要进行同步，造成不必要的同步开销，而且大部分时候我们是用不到同步的，所以不建议用这种模式。</p>
+<h4 id="4-静态内部类单例模式"><a href="#4-静态内部类单例模式" class="headerlink" title="4. 静态内部类单例模式"></a>4. 静态内部类单例模式</h4><pre><code>public class Singleton { 
+    private Singleton(){
+    }
+    public static Singleton getInstance(){  
+        return SingletonHolder.sInstance;  
+    }  
+    private static class SingletonHolder {  
+        private static final Singleton sInstance = new Singleton();  
+    }  
+}
+</code></pre><p>第一次加载Singleton类时并不会初始化sInstance，只有第一次调用getInstance方法时虚拟机加载SingletonHolder 并初始化sInstance ，这样不仅能确保线程安全也能保证Singleton类的唯一性，所以推荐使用静态内部类单例模式。</p>
+<h4 id="5-枚举单例"><a href="#5-枚举单例" class="headerlink" title="5. 枚举单例"></a>5. 枚举单例</h4><pre><code>public enum Singleton {  
+   INSTANCE;  
+   public void doSomeThing() {  
+   }  
+ }
+</code></pre><p>####总结####<br>常用的一些单例模式基本上都讲完啦， 大家有什么问题可以在下面留言。设计模式打算做成一个系列，也算是自己做一些笔记，一举两得。</p>
 
-<p class="count"></p>
-
-<div class="tags">
-    <a href="/tags/Android/" style="font-size: 35px; color: #000">Android</a> <a href="/tags/设计模式/" style="font-size: 16px; color: #808080">设计模式</a> <a href="/tags/贝塞尔曲线/" style="font-size: 25.5px; color: #404040">贝塞尔曲线</a>
-</div>
-<style>
-    .category-list li{
-        display: inline-block;
-        margin: 0 1em .5em 0;
-        padding: 4px;
-        border: 1px solid lightgray;
-        font-size: 1.2rem;
-    }
-    .category-list a { color: gray; }
-    .category-list-item:hover a {
-        color: gray;
-        text-decoration: none;
-    }
-    .category-list-count {
-        margin-left: 2px;
-        font-size: .9rem;
-    }
-    .article-entry ul li:before{ display: none; }
-    .article-inner { text-align: center; }
-    .tags {
-        max-width: 42em;
-        margin: 2em auto;
-        margin-top: 0em;
-    }
-    .tags a {
-        margin-right: 1em;
-        line-height: 65px;
-        border-bottom: 1px solid gray;
-        white-space: nowrap;
-        transition: border-bottom .5s;
-    }
-    .tags a:hover {
-        border-bottom: 3px dotted gray;
-        text-decoration: none;
-    }
-    #count > span {
-        margin: auto .2em;
-        font-weight: bold;
-    }
-</style>
-
-<!-- Count tags and categories -->
-<p id="count">
-        已有<span><script>document.write($(".category-list-item").length)</script></span>个分类，
-        共计<span><script>document.write($(".tags > a").length)</script></span>个标签
-</p>
-<script>
-    $('#count').appendTo('.count');
-</script>
-
-          
-        
       
     </div>
     
@@ -382,8 +362,42 @@
     
 
 
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/03/30/SharedPreference中apply和commit/">
+                    SharedPreference中apply和commit
+                </a>
+            </div>
+        
+    </nav>
+
   
 </article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-饿汉模式"><span class="toc-number">1.</span> <span class="toc-text">1.饿汉模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-懒汉模式（线程不安全）"><span class="toc-number">2.</span> <span class="toc-text">2.懒汉模式（线程不安全）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-懒汉模式（线程安全）"><span class="toc-number">3.</span> <span class="toc-text">3.懒汉模式（线程安全）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-静态内部类单例模式"><span class="toc-number">4.</span> <span class="toc-text">4. 静态内部类单例模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-枚举单例"><span class="toc-number">5.</span> <span class="toc-text">5. 枚举单例</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
 
 
 
@@ -401,7 +415,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"标签　| 邢皓翔的个人网站与博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"设计模式——单例　| 邢皓翔的个人网站与博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -417,7 +431,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="tags/index.html" data-title="标签" data-url="http://xinghx.com/tags/index.html"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/04/05/设计模式——单例模式/" data-title="设计模式——单例" data-url="http://xinghx.com/2017/04/05/设计模式——单例模式/"></div>
     <script>
         var duoshuoQuery = {short_name:"xinghx"};
         var loadComment = function(){
@@ -435,6 +449,24 @@
 </div>
     
 
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/03/30/SharedPreference中apply和commit/" title="下一篇: SharedPreference中apply和commit">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/04/05/设计模式——单例模式/">设计模式——单例</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/30/SharedPreference中apply和commit/">SharedPreference中apply和commit</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/01/Android中肯定会遇到的问题——内存泄漏/">Android中肯定会遇到的问题——内存泄漏</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/13/Android贝塞尔曲线————波浪效果（大波浪）/">Android贝塞尔曲线————波浪效果（大波浪)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/11/Android贝塞尔曲线——曲线进阶/">Android贝塞尔曲线——曲线进阶</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/10/Android贝塞尔曲线——曲线初体验/">Android贝塞尔曲线——曲线初体验</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/10/hello-world/">邢皓翔个人博客成立了</a></li></ul>
 
 
 
